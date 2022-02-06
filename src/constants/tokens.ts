@@ -193,6 +193,14 @@ export const WETH_POLYGON_MUMBAI = new Token(
   'Wrapped Ether'
 )
 
+export const USDC_FANTOM = new Token(
+  SupportedChainId.FANTOM,
+  '0x04068da6c83afcfa0e13ba15a6696662335d5b75',
+  18,
+  'USDC',
+  'USD Coin'
+)
+
 export const WETH_POLYGON = new Token(
   SupportedChainId.POLYGON,
   '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619',
@@ -210,6 +218,13 @@ export const UNI: { [chainId: number]: Token } = {
 
 export const WRAPPED_NATIVE_CURRENCY: { [chainId: number]: Token } = {
   ...WETH9,
+  [SupportedChainId.FANTOM]: new Token(
+    SupportedChainId.FANTOM,
+    '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83',
+    18,
+    'WFTM',
+    'Wrapped Fantom'
+  ),
   [SupportedChainId.OPTIMISM]: new Token(
     SupportedChainId.OPTIMISM,
     '0x4200000000000000000000000000000000000006',
@@ -257,6 +272,9 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId: number]: Token } = {
 function isMatic(chainId: number): chainId is SupportedChainId.POLYGON | SupportedChainId.POLYGON_MUMBAI {
   return chainId === SupportedChainId.POLYGON_MUMBAI || chainId === SupportedChainId.POLYGON
 }
+function isFantom(chainId: number): chainId is SupportedChainId.FANTOM {
+  return chainId === SupportedChainId.FANTOM;
+}
 
 class MaticNativeCurrency extends NativeCurrency {
   equals(other: Currency): boolean {
@@ -273,6 +291,24 @@ class MaticNativeCurrency extends NativeCurrency {
     super(chainId, 18, 'MATIC', 'Polygon Matic')
   }
 }
+
+
+class FantomNativeCurrency extends NativeCurrency {
+  equals(other: Currency): boolean {
+    return other.isNative && other.chainId === this.chainId
+  }
+
+  get wrapped(): Token {
+    if (!isFantom(this.chainId)) throw new Error('Not Fantom')
+    return WRAPPED_NATIVE_CURRENCY[this.chainId]
+  }
+
+  public constructor(chainId: number) {
+    if (!isFantom(chainId)) throw new Error('Not fantom')
+    super(chainId, 18, 'FTM', 'Fantom')
+  }
+}
+
 
 export class ExtendedEther extends Ether {
   public get wrapped(): Token {
@@ -291,8 +327,8 @@ const cachedNativeCurrency: { [chainId: number]: NativeCurrency } = {}
 export function nativeOnChain(chainId: number): NativeCurrency {
   return (
     cachedNativeCurrency[chainId] ??
-    (cachedNativeCurrency[chainId] = isMatic(chainId)
-      ? new MaticNativeCurrency(chainId)
+    (cachedNativeCurrency[chainId] = isFantom(chainId)
+      ? new FantomNativeCurrency(chainId)
       : ExtendedEther.onChain(chainId))
   )
 }

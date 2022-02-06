@@ -21,7 +21,7 @@ import Copy from './Copy'
 import Transaction from './Transaction'
 
 const HeaderRow = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap};
+  ${({ theme }) => theme.flexRowNoWrap}
   padding: 1rem 1rem;
   font-weight: 500;
   color: ${(props) => (props.color === 'blue' ? ({ theme }) => theme.primary1 : 'inherit')};
@@ -282,7 +282,7 @@ export default function AccountDetails({
                     <WalletAction
                       style={{ fontSize: '.825rem', fontWeight: 400, marginRight: '8px' }}
                       onClick={() => {
-                        ;(connector as any).close()
+                        (connector as any).close()
                       }}
                     >
                       <Trans>Disconnect</Trans>

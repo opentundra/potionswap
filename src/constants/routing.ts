@@ -33,6 +33,7 @@ import {
   WETH_POLYGON,
   WETH_POLYGON_MUMBAI,
   WRAPPED_NATIVE_CURRENCY,
+  USDC_FANTOM
 } from './tokens'
 
 type ChainTokenList = {
@@ -62,6 +63,10 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     DAI_ARBITRUM_ONE,
     USDT_ARBITRUM_ONE,
     WBTC_ARBITRUM_ONE,
+  ],
+  [SupportedChainId.FANTOM]: [
+    ...WRAPPED_NATIVE_CURRENCIES_ONLY[SupportedChainId.FANTOM],
+    USDC_FANTOM,
   ],
   [SupportedChainId.POLYGON]: [
     ...WRAPPED_NATIVE_CURRENCIES_ONLY[SupportedChainId.POLYGON],

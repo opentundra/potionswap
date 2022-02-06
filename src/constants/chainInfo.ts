@@ -1,5 +1,6 @@
 import ms from 'ms.macro'
 
+import fantomLogoUrl from '../assets/images/fantom-logo.png'
 import ethereumLogoUrl from '../assets/images/ethereum-logo.png'
 import arbitrumLogoUrl from '../assets/svg/arbitrum_logo.svg'
 import optimismLogoUrl from '../assets/svg/optimistic_ethereum.svg'
@@ -18,6 +19,7 @@ if (typeof INFURA_KEY === 'undefined') {
 export const INFURA_NETWORK_URLS: { [key in SupportedChainId]: string } = {
   [SupportedChainId.MAINNET]: `https://mainnet.infura.io/v3/${INFURA_KEY}`,
   [SupportedChainId.RINKEBY]: `https://rinkeby.infura.io/v3/${INFURA_KEY}`,
+  [SupportedChainId.FANTOM]: `https://rpc.fantom.network`,
   [SupportedChainId.ROPSTEN]: `https://ropsten.infura.io/v3/${INFURA_KEY}`,
   [SupportedChainId.GOERLI]: `https://goerli.infura.io/v3/${INFURA_KEY}`,
   [SupportedChainId.KOVAN]: `https://kovan.infura.io/v3/${INFURA_KEY}`,
@@ -76,13 +78,25 @@ export type ChainInfoMap = { readonly [chainId: number]: L1ChainInfo | L2ChainIn
   { readonly [chainId in SupportedL1ChainId]: L1ChainInfo }
 
 export const CHAIN_INFO: ChainInfoMap = {
+  [SupportedChainId.FANTOM]: {
+    networkType: NetworkType.L1,
+    docs: 'https://docs.fantomfoundation.org/',
+    explorer: 'https://ftmscan.com/',
+    infoLink: 'https://info.potionswap.xyz/#/',
+    label: 'Fantom',
+    logoUrl: fantomLogoUrl,
+    addNetworkInfo: {
+      nativeCurrency: { name: 'Fantom', symbol: 'ETH', decimals: 18 },
+      rpcUrl: INFURA_NETWORK_URLS[SupportedChainId.FANTOM],
+    },
+  },
   [SupportedChainId.MAINNET]: {
     networkType: NetworkType.L1,
     docs: 'https://docs.uniswap.org/',
-    explorer: 'https://etherscan.io/',
-    infoLink: 'https://info.uniswap.org/#/',
-    label: 'Ethereum',
-    logoUrl: ethereumLogoUrl,
+    explorer: 'https://ftmscan.com/',
+    infoLink: 'https://info.potionswap.xyz/#/',
+    label: 'Fantom',
+    logoUrl: fantomLogoUrl,
     addNetworkInfo: {
       nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
       rpcUrl: INFURA_NETWORK_URLS[SupportedChainId.MAINNET],

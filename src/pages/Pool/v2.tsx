@@ -140,34 +140,32 @@ export default function Pool() {
         <SwapPoolTabs active={'pool'} />
         <VoteCard>
           <CardBGImage />
-          <CardNoise />
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <ThemedText.White fontWeight={600}>
+                {/* <ThemedText.White fontWeight={600}>
                   <Trans>Liquidity provider rewards</Trans>
-                </ThemedText.White>
+                </ThemedText.White> */}
               </RowBetween>
               <RowBetween>
-                <ThemedText.White fontSize={14}>
+                {/* <ThemedText.White fontSize={14}>
                   <Trans>
                     Liquidity providers earn a 0.3% fee on all trades proportional to their share of the pool. Fees are
                     added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.
                   </Trans>
-                </ThemedText.White>
+                </ThemedText.White> */}
               </RowBetween>
-              <ExternalLink
+              {/* <ExternalLink
                 style={{ color: 'white', textDecoration: 'underline' }}
                 target="_blank"
                 href="https://uniswap.org/docs/v2/core-concepts/pools/"
-              >
-                <ThemedText.White fontSize={14}>
+              > */}
+                {/* <ThemedText.White fontSize={14}>
                   <Trans>Read more about providing liquidity</Trans>
-                </ThemedText.White>
-              </ExternalLink>
+                </ThemedText.White> */}
+              {/* </ExternalLink> */}
             </AutoColumn>
           </CardSection>
-          <CardBGImage />
           <CardNoise />
         </VoteCard>
 

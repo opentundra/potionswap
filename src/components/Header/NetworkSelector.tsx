@@ -122,7 +122,7 @@ const SelectorControls = styled.div<{ interactive: boolean }>`
   justify-content: space-between;
   padding: 6px 8px;
 `
-const SelectorLogo = styled(Logo)<{ interactive?: boolean }>`
+const SelectorLogo = styled(Logo) <{ interactive?: boolean }>`
   margin-right: ${({ interactive }) => (interactive ? 8 : 0)}px;
   @media screen and (min-width: ${MEDIA_WIDTHS.upToSmall}px) {
     margin-right: 8px;
@@ -152,19 +152,7 @@ const BridgeLabel = ({ chainId }: { chainId: SupportedChainId }) => {
   }
 }
 const ExplorerLabel = ({ chainId }: { chainId: SupportedChainId }) => {
-  switch (chainId) {
-    case SupportedChainId.ARBITRUM_ONE:
-    case SupportedChainId.ARBITRUM_RINKEBY:
-      return <Trans>Arbiscan</Trans>
-    case SupportedChainId.OPTIMISM:
-    case SupportedChainId.OPTIMISTIC_KOVAN:
-      return <Trans>Optimistic Etherscan</Trans>
-    case SupportedChainId.POLYGON:
-    case SupportedChainId.POLYGON_MUMBAI:
-      return <Trans>Polygonscan</Trans>
-    default:
-      return <Trans>Etherscan</Trans>
-  }
+  return <Trans>FTMscan</Trans>
 }
 
 function Row({
@@ -316,10 +304,7 @@ export default function NetworkSelector() {
           <FlyoutHeader>
             <Trans>Select a network</Trans>
           </FlyoutHeader>
-          <Row onSelectChain={handleChainSwitch} targetChain={SupportedChainId.MAINNET} />
-          <Row onSelectChain={handleChainSwitch} targetChain={SupportedChainId.POLYGON} />
-          <Row onSelectChain={handleChainSwitch} targetChain={SupportedChainId.OPTIMISM} />
-          <Row onSelectChain={handleChainSwitch} targetChain={SupportedChainId.ARBITRUM_ONE} />
+          <Row onSelectChain={handleChainSwitch} targetChain={SupportedChainId.FANTOM} />
         </FlyoutMenu>
       )}
     </SelectorWrapper>
